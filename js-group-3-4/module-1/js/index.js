@@ -11,32 +11,26 @@ let userPick = Number(msg);
 isPickValid = userPick > 0 && !Number.isNaN(userPick);
 
 if (isPickValid) {
-  if (userPick <= toTaba) {
-    const isSelect = window.confirm(`Ты готов поехать в ${TABA}`);
-    if (isSelect) {
-      toTaba = userPick - toTaba;
-      alert(`Приятного путешествия в группе на ${TABA}`);
-    } else {
-      alert(`Нам очень жаль, приходите еще!`);
-    }
-  } else if (userPick <= toSharm) {
-    const isSelect = window.confirm(`Ты готов поехать в ${SHARM}`);
-    if (isSelect) {
-      toTaba = userPick - toSharm;
-      alert(`Приятного путешествия в группе на ${SHARM}`);
-    } else {
-      alert(`Нам очень жаль, приходите еще!`);
-    }
-  } else if (userPick <= toHurgada) {
-    const isSelect = window.confirm(`Ты готов поехать в ${HURGADA}`);
-    if (isSelect) {
-      toTaba = userPick - toHurgada;
-      alert(`Приятного путешествия в группе на ${HURGADA}`);
-    } else {
-      alert(`Нам очень жаль, приходите еще!`);
-    }
+  if (userPick <= toTaba && window.confirm(`Ты готов поехать на ${TABA}`)) {
+    toTaba = toTaba - userPick;
+    console.log('toTaba ', toTaba);
+    alert(`Приятного путешествия в группе на ${TABA}`);
+  } else if (
+    userPick <= toSharm &&
+    window.confirm(`Ты готов поехать на ${SHARM}`)
+  ) {
+    toSharm = toSharm - userPick;
+    console.log('toSharm ', toSharm);
+    alert(`Приятного путешествия в группе на ${SHARM}`);
+  } else if (
+    userPick <= toHurgada &&
+    window.confirm(`Ты готов поехать на ${HURGADA}`)
+  ) {
+    toHurgada = toHurgada - userPick;
+    console.log('toHurgada ', toHurgada);
+    alert(`Приятного путешествия в группе на ${HURGADA}`);
   } else {
-    alert(`Извините, мест нет.`);
+    alert(`Нам очень жаль, приходите еще!`);
   }
 } else {
   alert(`Ошибка ввода`);
