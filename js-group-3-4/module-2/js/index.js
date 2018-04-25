@@ -4,9 +4,7 @@ let passTryCount = 3;
 
 do {
   let pass = prompt(
-    `Неверный пароль, у вас осталось [${passTryCount}] попыток`,
-    '',
-  );
+    `Неверный пароль, у вас осталось [${passTryCount}] попыток`,'');
   if (passwords.includes(pass)) {
     alert('Добро пожаловать!');
   } else {
