@@ -4,15 +4,18 @@ let passTryCount = 3;
 
 do {
   let pass = prompt(`Введите пароль, у вас есть [${passTryCount}] попытки`, '');
-  if (passTryCount > 1) {
-    if (passwords.includes(pass) && passTryCount >= 1) {
-      alert('Добро пожаловать!');
-      break;
+  if (pass === null) {
+    if (passTryCount > 1) {
+      if (passwords.includes(pass) && passTryCount >= 1) {
+        alert('Добро пожаловать!');
+        break;
+      } else {
+        passTryCount--;
+      }
     } else {
+      alert('У вас закончились попытки, аккаунт заблокирован!');
       passTryCount--;
     }
-  } else {
-    alert('У вас закончились попытки, аккаунт заблокирован!');
-    passTryCount--;
   }
+  break;
 } while (passTryCount > 0);
