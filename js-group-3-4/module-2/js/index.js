@@ -5,6 +5,8 @@ let passTryCount = 3;
 do {
   let pass = prompt(`Введите пароль, у вас есть [${passTryCount}] попытки`, '');
   if (pass === null) {
+    break;
+  } else {
     if (passTryCount > 1) {
       if (passwords.includes(pass) && passTryCount >= 1) {
         alert('Добро пожаловать!');
@@ -17,5 +19,4 @@ do {
       passTryCount--;
     }
   }
-  break;
 } while (passTryCount > 0);
