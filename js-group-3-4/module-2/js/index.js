@@ -4,7 +4,7 @@ let passTryCount = 3;
 
 do {
   let pass = prompt(`Введите пароль, у вас есть [${passTryCount}] попытки`, '');
-  passTryCount--;
+  passTryCount -= 1;
   if (pass === null) {
     break;
   } else {
