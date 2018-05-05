@@ -13,7 +13,7 @@ const addLogin = (logins, login) => {
 
 const checkLoginValidity = login => {
   loginLength = login.length;
-  if (loginLength > 4 && loginLength < 16) {
+  if (loginLength >= 4 && loginLength < 16) {
     return true;
   } else {
     return false;
