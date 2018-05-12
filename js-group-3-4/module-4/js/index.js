@@ -1,22 +1,3 @@
-const cashierStore = {
-  prodList: [],
-  cash: 0,
-  invoice() {
-    console.log(this.prodList + ' ' + this.cash);
-  },
-};
-
-const products = {
-  bread: 10,
-  milk: 15,
-  apples: 20,
-  chicken: 50,
-  pork: 80,
-  cheese: 60,
-  tea: 20,
-  candy: 25,
-};
-
 const Cashier = function(name, products) {
   this.name = name;
   this.products = products;
@@ -32,8 +13,6 @@ const Cashier = function(name, products) {
       count += order[product] * products[product];
     }
     this.totalPrice = count;
-
-    console.log(this);
     return this.totalPrice;
   };
 
@@ -77,6 +56,17 @@ const Cashier = function(name, products) {
       this.reset();
     }
   };
+};
+
+const products = {
+  bread: 10,
+  milk: 15,
+  apples: 20,
+  chicken: 50,
+  pork: 80,
+  cheese: 60,
+  tea: 20,
+  candy: 25,
 };
 
 const order1 = {
