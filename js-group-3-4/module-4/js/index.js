@@ -10,10 +10,14 @@ const Cashier = function(name, products) {
     const ordersList = Object.keys(order);
     let count = 0;
     for (const product of ordersList) {
-      count += order[product] * products[product];
+      if (!productsList.includes(product)) {
+        alert(`Товара с именем ${product} нет`);
+        return null;
+      } else {
+        count += order[product] * products[product];
+      }
     }
     this.totalPrice = count;
-    return this.totalPrice;
   };
 
   this.getCustomerMoney = () => {
@@ -47,8 +51,9 @@ const Cashier = function(name, products) {
   };
 
   this.serve = order => {
-    this.countTotalPrice(order);
-    if (this.getCustomerMoney() === null) {
+    if (this.countTotalPrice(order) === null) {
+      return;
+    } else if (this.getCustomerMoney() === null) {
       console.log('Очень жаль, что-то пошло не так, приходите еще');
       return;
     } else {
@@ -70,25 +75,26 @@ const products = {
 };
 
 const order1 = {
-  bread: 2,
-  milk: 2,
-  apples: 1,
-  cheese: 1,
+  bread: 2, //20
+  milk: 2, //30
+  apples: 1, //20
+  cheese: 1, //60
+  sss: 123,
 };
 
-const order2 = {
-  bread: 3,
-  milk: 2,
-  apples: 5,
-  chicken: 1,
-  pork: 1,
-  cheese: 3,
-  tea: 1,
-  candy: 5,
-};
+// const order2 = {
+//   bread: 3,
+//   milk: 2,
+//   apples: 5,
+//   chicken: 1,
+//   pork: 1,
+//   cheese: 3,
+//   tea: 1,
+//   candy: 5,
+// };
 
 const cashier1 = new Cashier('Mango', products);
-const cashier2 = new Cashier('Poly', products);
+// const cashier2 = new Cashier('Poly', products);
 
 cashier1.serve(order1);
-cashier2.serve(order2);
+// cashier2.serve(order2);
