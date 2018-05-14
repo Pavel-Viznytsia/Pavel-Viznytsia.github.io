@@ -8,16 +8,14 @@ const Cashier = function(name, products) {
   this.countTotalPrice = order => {
     const productsList = Object.keys(this.products);
     const ordersList = Object.keys(order);
-    let count = 0;
     for (const product of ordersList) {
       if (!productsList.includes(product)) {
         alert(`Товара с именем ${product} нет`);
         return null;
       } else {
-        count += order[product] * products[product];
+        this.totalPrice += order[product] * products[product];
       }
     }
-    this.totalPrice = count;
   };
 
   this.getCustomerMoney = () => {
@@ -75,11 +73,11 @@ const products = {
 };
 
 const order1 = {
-  bread: 2, //20
-  milk: 2, //30
-  apples: 1, //20
-  cheese: 1, //60
-  sss: 123,
+  bread: 2,
+  milk: 2,
+  apples: 1,
+  cheese: 1,
+  // sss: 123,
 };
 
 // const order2 = {
