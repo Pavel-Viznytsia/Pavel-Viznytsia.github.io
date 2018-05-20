@@ -78,6 +78,10 @@ function SocialBook(users = [], posts = {}) {
     this.posts[userId].push(post);
     return this.posts[userId];
   };
+  this.removePost = (userId, postId) =>
+    (this.posts[userId] = this.posts[userId].filter(
+      posts => posts.id !== postId,
+    ));
 }
 
 const socialBook1 = new SocialBook(initialUsers, initialPosts);
@@ -132,3 +136,11 @@ const newPost1 = {
 };
 
 console.log('addPost(): ', socialBook1.addPost('-e51cpd4di', newPost1));
+console.log(
+  'removePost(): ',
+  socialBook1.removePost('-e51cpd4di', '-i03pbhy3s'),
+);
+console.log(
+  'removePost(): ',
+  socialBook1.removePost('-s19a6hqce', '-199hb6igr'),
+);

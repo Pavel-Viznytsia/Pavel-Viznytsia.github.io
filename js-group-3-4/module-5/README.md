@@ -82,8 +82,7 @@ const getId = () => "-" + Math.random().toString(36).substr(2, 9);
 
 \*\* addPost(userId, post) - добавляет post в поле posts объекта socialBook по ключу userId.
 
-* removePost(userId, postId) - удаляет post с id равным postId из поля posts
-  объекта socialBook по ключу userId
+\*\* removePost(userId, postId) - удаляет post с id равным postId из поля posts объекта socialBook по ключу userId
 
 * getAllLikes(userId) - возвращает сумму всех полей likes постов пользователя с id равным userId
 
