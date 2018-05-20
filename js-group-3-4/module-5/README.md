@@ -75,9 +75,12 @@ const getId = () => "-" + Math.random().toString(36).substr(2, 9);
 
 /\*
 **_ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ - выполнять по желанию_**
-Добавьте в SocialBook следующие методы для работы с постами пользователей: - getUserPosts(userId) - возвращает массив постов пользователя с id равным userId
 
-* addPost(userId, post) - добавляет post в поле posts объекта socialBook по ключу userId.
+Добавьте в SocialBook следующие методы для работы с постами пользователей:
+
+\*\* getUserPosts(userId) - возвращает массив постов пользователя с id равным userId
+
+\*\* addPost(userId, post) - добавляет post в поле posts объекта socialBook по ключу userId.
 
 * removePost(userId, postId) - удаляет post с id равным postId из поля posts
   объекта socialBook по ключу userId

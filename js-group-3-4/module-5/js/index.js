@@ -70,6 +70,14 @@ function SocialBook(users = [], posts = {}) {
   };
 
   this.getUsersCount = () => this.getAllUsers().reduce(acc => acc + 1, 0);
+  //================================
+  // Additional task
+  //================================
+  this.getUserPosts = userId => this.posts[userId];
+  this.addPost = (userId, post) => {
+    this.posts[userId].push(post);
+    return this.posts[userId];
+  };
 }
 
 const socialBook1 = new SocialBook(initialUsers, initialPosts);
@@ -103,3 +111,24 @@ console.log('getAllUsers(): ', socialBook1.getAllUsers());
 console.log('removeUserById(): ', socialBook1.removeUserById('-qkpzenjxe'));
 console.log('removeUserById(): ', socialBook1.removeUserById('-e51cpd4di'));
 console.log('getUsersCount(): ', socialBook1.getUsersCount());
+
+//================================
+// Additional task
+//================================
+
+console.log('getUserPosts(): ', socialBook1.getUserPosts('-s19a6hqce'));
+console.log('getUserPosts(): ', socialBook1.getUserPosts('-qkpzenjxe'));
+
+const getId = () =>
+  '-' +
+  Math.random()
+    .toString(36)
+    .substr(2, 9);
+
+const newPost1 = {
+  id: getId(),
+  text: 'post #3',
+  likes: 9999,
+};
+
+console.log('addPost(): ', socialBook1.addPost('-e51cpd4di', newPost1));
