@@ -36,13 +36,70 @@ const initialPosts = {
 };
 
 function SocialBook(users = [], posts = {}) {
-  /*
-    Для создания уникального идентификатора для поля id, используйте вспомогательную функцию getId(), возвращающую уникальную строку.  
-    К примеру: const user = { id: getId(), name: 'Mango' };
-  */
-  const getId = () =>
+  this.users = users;
+  this.posts = posts;
+
+  this.getId = () =>
     '-' +
     Math.random()
       .toString(36)
       .substr(2, 9);
+
+  this.getAllUsers = () => this.users;
+
+  this.getUserByLogin = login => this.users.find(user => user.login === login);
+
+  this.getUserStatus = userId => {
+    const getUserStatus = this.users.find(user => user.id === userId);
+    return getUserStatus.isActive ? 'active' : 'inactive';
+  };
+
+  this.addUser = user => {
+    const newUser = {
+      ...user,
+      id: this.getId(),
+      isActive: false,
+    };
+    this.users.push(newUser);
+    return this.users;
+  };
+
+  this.removeUserById = userId => {
+    const removeUser = this.users.filter(user => user.id !== userId);
+    return (this.users = removeUser);
+  };
+
+  this.getUsersCount = () => this.getAllUsers().reduce(acc => acc + 1, 0);
 }
+
+const socialBook1 = new SocialBook(initialUsers, initialPosts);
+console.log('getAllUsers(): ', socialBook1.getAllUsers());
+console.log(
+  'getUserByLogin(): ',
+  socialBook1.getUserByLogin('mangozedog@mail.com'),
+);
+console.log('getUserStatus(): ', socialBook1.getUserStatus('-qkpzenjxe'));
+console.log('getUserStatus(): ', socialBook1.getUserStatus('-e51cpd4di'));
+
+const user1 = {
+  email: 'xxx@yyy.zzz',
+  password: 'qwerty',
+};
+const user2 = {
+  email: 'qqq@www.eee',
+  password: 'asdzxc',
+};
+
+console.log('addUser(): ', socialBook1.addUser(user1));
+console.log('addUser(): ', socialBook1.addUser(user1));
+console.log('addUser(): ', socialBook1.addUser(user1));
+console.log('addUser(): ', socialBook1.addUser(user1));
+console.log('addUser(): ', socialBook1.addUser(user1));
+console.log('addUser(): ', socialBook1.addUser(user1));
+console.log('addUser(): ', socialBook1.addUser(user1));
+console.log('addUser(): ', socialBook1.addUser(user2));
+console.log('addUser(): ', socialBook1.addUser(user2));
+console.log('getAllUsers(): ', socialBook1.getAllUsers());
+console.log('removeUserById(): ', socialBook1.removeUserById('-qkpzenjxe'));
+console.log('removeUserById(): ', socialBook1.removeUserById('-e51cpd4di'));
+console.log('getUsersCount(): ', socialBook1.getUsersCount());
