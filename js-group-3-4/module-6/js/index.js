@@ -93,14 +93,13 @@ class Hamburger {
    * @return {Number} - Калорийность гамбургера
    */
   calculateCalories() {
-    const stuffingCallories = this.toppings
-      .map(item => Hamburger.TOPPINGS[item].cal)
-      .reduce((acc, val) => acc + val, 0);
-    return (
-      Hamburger.SIZES[this.size].cal +
-      Hamburger.STUFFINGS[this.stuffing].cal +
-      stuffingCallories
+    const hamSizeCallories = Hamburger.SIZES[this.size].cal;
+    const hamStuffingCallories = Hamburger.STUFFINGS[this.stuffing].cal;
+    const stuffingCallories = this.toppings.reduce(
+      (acc, topping) => acc + Hamburger.TOPPINGS[topping].cal,
+      0,
     );
+    return hamSizeCallories + hamStuffingCallories + stuffingCallories;
   }
 }
 
