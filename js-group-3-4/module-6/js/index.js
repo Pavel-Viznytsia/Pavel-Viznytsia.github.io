@@ -20,10 +20,18 @@ class Hamburger {
    * @memberof Hamburger
    */
   addTopping(topping) {
-    if (!this.toppings.includes(topping)) {
-      this.toppings.push(topping);
-    } else {
-      console.warn(`This toppings ${topping} is already exist`);
+    try {
+      if (typeof topping !== 'string' || !Hamburger.TOPPINGS[topping]) {
+        throw new Error('Data is incorrect');
+      } else {
+        if (!this.toppings.includes(topping)) {
+          this.toppings.push(topping);
+        } else {
+          console.warn(`This toppings ${topping} is already exist`);
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
@@ -155,14 +163,12 @@ const ham1 = new Hamburger({
   stuffing: Hamburger.STUFFING_MEAT,
 });
 
+ham1.addTopping('qweqwe');
 ham1.addTopping(Hamburger.TOPPING_SPICE);
 ham1.addTopping(Hamburger.TOPPING_SPICE);
 ham1.addTopping(Hamburger.TOPPING_SAUCE);
 ham1.addTopping(Hamburger.TOPPING_SAUCE);
 ham1.removeTopping(Hamburger.TOPPING_SAUCE);
-// ham1.removeTopping(Hamburger.TOPPING_SPICE);
-// ham1.removeTopping(Hamburger.TOPPING_SPICE);
-console.log(ham1.getToppings());
 console.log('The toppings of Hamburger is: ', ham1.getToppings());
 console.log('The size of Hamburger is: ', ham1.getSize());
 console.log('The stuffings of Hamburger is: ', ham1.getStuffing());
