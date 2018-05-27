@@ -78,14 +78,13 @@ class Hamburger {
    * @return {Number} - Ценa гамбургера
    */
   calculatePrice() {
-    const stuffingPrice = this.toppings
-      .map(item => Hamburger.TOPPINGS[item].price)
-      .reduce((acc, val) => acc + val, 0);
-    return (
-      Hamburger.SIZES[this.size].price +
-      Hamburger.STUFFINGS[this.stuffing].price +
-      stuffingPrice
+    const hamSizePrice = Hamburger.SIZES[this.size].price;
+    const hamStuffingPrice = Hamburger.STUFFINGS[this.stuffing].price;
+    const toppingsPrice = this.toppings.reduce(
+      (acc, topping) => acc + Hamburger.TOPPINGS[topping].price,
+      0,
     );
+    return hamSizePrice + hamStuffingPrice + toppingsPrice;
   }
 
   /**
