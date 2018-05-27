@@ -163,3 +163,6 @@ console.log(
   socialBook1.addPostLike('-s19a6hqce', '-5sgljaskg'),
 );
 console.log('getPostsCount(): ', socialBook1.getPostsCount('-e51cpd4di'));
+
+console.log(`${2 + 2}`);
+console.log(`${2 + 2}`);
