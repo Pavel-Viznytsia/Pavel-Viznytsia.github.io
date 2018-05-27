@@ -162,7 +162,7 @@ ham1.addTopping(Hamburger.TOPPING_SAUCE);
 ham1.removeTopping(Hamburger.TOPPING_SAUCE);
 // ham1.removeTopping(Hamburger.TOPPING_SPICE);
 // ham1.removeTopping(Hamburger.TOPPING_SPICE);
-console.log(ham1.getToppings);
+console.log(ham1.getToppings());
 console.log('The toppings of Hamburger is: ', ham1.getToppings());
 console.log('The size of Hamburger is: ', ham1.getSize());
 console.log('The stuffings of Hamburger is: ', ham1.getStuffing());
