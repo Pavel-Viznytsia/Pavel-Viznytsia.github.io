@@ -8,10 +8,26 @@ class Hamburger {
    * @param {String} stuffing - Начинка
    * @memberof Hamburger
    */
+
   constructor({ size, stuffing }) {
-    this.size = size;
-    this.stuffing = stuffing;
-    this.toppings = [];
+    try {
+      this.size = size;
+      this.stuffing = stuffing;
+      this.toppings = [];
+      if (this.size === undefined || this.stuffing === undefined) {
+        throw new Error(`No required parameters`);
+      }
+    } catch (error) {
+      this.HamburgerException(error);
+    }
+  }
+  /**
+   * @method HamburgerException - Catching the ERROR
+   * @param {String} error - Ошибка
+   * @memberof Hamburger
+   */
+  HamburgerException(error) {
+    console.error('HamburgerException: ', error.message);
   }
 
   /**
@@ -21,17 +37,17 @@ class Hamburger {
    */
   addTopping(topping) {
     try {
-      if (typeof topping !== 'string' || !Hamburger.TOPPINGS[topping]) {
-        throw new Error('Data is incorrect');
+      if (this.toppings.includes(topping)) {
+        throw new Error(`Duplicate topping ${topping}`);
+      } else if (!Hamburger.TOPPINGS[topping]) {
+        throw new Error(`Нет такой добавки "${topping}" !!!`);
+      } else if (!this.size || !this.stuffing) {
+        throw new Error(`Нет основания, нет начинки !!!`);
       } else {
-        if (!this.toppings.includes(topping)) {
-          this.toppings.push(topping);
-        } else {
-          console.warn(`This toppings ${topping} is already exist`);
-        }
+        this.toppings.push(topping);
       }
     } catch (error) {
-      console.log(error.message);
+      this.HamburgerException(error);
     }
   }
 
@@ -41,14 +57,17 @@ class Hamburger {
    * @memberof Hamburger
    */
   removeTopping(topping) {
-    if (this.toppings.length > 0) {
+    try {
+      if (!Hamburger.TOPPINGS[topping]) {
+        throw new Error(`Нет такой добавки "${topping}" для удаления !!!`);
+      }
       this.toppings.find((item, idx) => {
         if (item === topping) {
           this.toppings.splice(idx, 1);
         }
       });
-    } else {
-      console.warn(`There is nothing to delete in Hamburger toppings`);
+    } catch (error) {
+      this.HamburgerException(error);
     }
   }
 
@@ -59,7 +78,14 @@ class Hamburger {
    *                   Hamburger.TOPPING_*
    */
   getToppings() {
-    return this.toppings;
+    try {
+      if (this.toppings.length <= 0) {
+        throw new Error(`Вы не добавили ниодной добаки !!!`);
+      }
+      console.log(this.toppings);
+    } catch (error) {
+      this.HamburgerException(error);
+    }
   }
 
   /**
@@ -68,7 +94,14 @@ class Hamburger {
    * @return {String} - Размер гамбургера
    */
   getSize() {
-    return this.size;
+    try {
+      if (this.size === undefined) {
+        throw new Error(`SIZE is - ???`);
+      }
+      console.log(this.size);
+    } catch (error) {
+      this.HamburgerException(error);
+    }
   }
 
   /**
@@ -77,7 +110,14 @@ class Hamburger {
    * @return {String} - Начинка гамбургера
    */
   getStuffing() {
-    return this.stuffing;
+    try {
+      if (this.stuffing === undefined) {
+        throw new Error(`STUFFING is - ???`);
+      }
+      console.log(this.stuffing);
+    } catch (error) {
+      this.HamburgerException(error);
+    }
   }
 
   /**
@@ -86,13 +126,23 @@ class Hamburger {
    * @return {Number} - Ценa гамбургера
    */
   calculatePrice() {
-    const hamSizePrice = Hamburger.SIZES[this.size].price;
-    const hamStuffingPrice = Hamburger.STUFFINGS[this.stuffing].price;
-    const toppingsPrice = this.toppings.reduce(
-      (acc, topping) => acc + Hamburger.TOPPINGS[topping].price,
-      0,
-    );
-    return hamSizePrice + hamStuffingPrice + toppingsPrice;
+    try {
+      if (this.size === undefined || this.stuffing === undefined) {
+        throw new Error(`SIZE ore STUFFING is undefined`);
+      } else {
+        const hamSizePrice = Hamburger.SIZES[this.size].price;
+        const hamStuffingPrice = Hamburger.STUFFINGS[this.stuffing].price;
+        const toppingsPrice = this.toppings.reduce(
+          (acc, topping) => acc + Hamburger.TOPPINGS[topping].price,
+          0,
+        );
+        console.log(
+          `Price: $${hamSizePrice + hamStuffingPrice + toppingsPrice}`,
+        );
+      }
+    } catch (error) {
+      this.HamburgerException(error);
+    }
   }
 
   /**
@@ -101,13 +151,25 @@ class Hamburger {
    * @return {Number} - Калорийность гамбургера
    */
   calculateCalories() {
-    const hamSizeCallories = Hamburger.SIZES[this.size].cal;
-    const hamStuffingCallories = Hamburger.STUFFINGS[this.stuffing].cal;
-    const stuffingCallories = this.toppings.reduce(
-      (acc, topping) => acc + Hamburger.TOPPINGS[topping].cal,
-      0,
-    );
-    return hamSizeCallories + hamStuffingCallories + stuffingCallories;
+    try {
+      if (this.size === undefined || this.stuffing === undefined) {
+        throw new Error(`SIZE ore STUFFING is undefined`);
+      } else {
+        const hamSizeCallories = Hamburger.SIZES[this.size].cal;
+        const hamStuffingCallories = Hamburger.STUFFINGS[this.stuffing].cal;
+        const stuffingCallories = this.toppings.reduce(
+          (acc, topping) => acc + Hamburger.TOPPINGS[topping].cal,
+          0,
+        );
+        console.log(
+          `Calories is: ${hamSizeCallories +
+            hamStuffingCallories +
+            stuffingCallories}`,
+        );
+      }
+    } catch (error) {
+      this.HamburgerException(error);
+    }
   }
 }
 
@@ -158,21 +220,35 @@ Hamburger.TOPPINGS = {
   },
 };
 
+// Раскомментируй одно из !!!
+
+//1
+// const ham1 = new Hamburger();
+
+//2
+// const ham1 = new Hamburger({
+//   size: '',
+//   stuffing: '',
+// });
+
+//3
 const ham1 = new Hamburger({
   size: Hamburger.SIZE_LARGE,
   stuffing: Hamburger.STUFFING_MEAT,
 });
 
-ham1.addTopping('qweqwe');
+ham1.addTopping('XXX');
 ham1.addTopping(Hamburger.TOPPING_SPICE);
 ham1.addTopping(Hamburger.TOPPING_SPICE);
 ham1.addTopping(Hamburger.TOPPING_SAUCE);
 ham1.addTopping(Hamburger.TOPPING_SAUCE);
+ham1.removeTopping('YYY');
 ham1.removeTopping(Hamburger.TOPPING_SAUCE);
-console.log('The toppings of Hamburger is: ', ham1.getToppings());
-console.log('The size of Hamburger is: ', ham1.getSize());
-console.log('The stuffings of Hamburger is: ', ham1.getStuffing());
-console.log('Total price, $', ham1.calculatePrice());
-console.log('Total calories, cal', ham1.calculateCalories());
+console.log('=====================');
+ham1.getToppings();
+ham1.getSize();
+ham1.getStuffing();
+ham1.calculatePrice();
+ham1.calculateCalories();
 
-console.log('ham1 ', ham1);
+console.log('ham1: ', ham1);
