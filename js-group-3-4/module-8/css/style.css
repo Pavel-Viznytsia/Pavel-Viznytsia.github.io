@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.image-gallery {
+  width: 50%;
+  min-width: 700px;
+  margin: 0 auto;
+  padding-top: 16px;
+}
+
+.fullview img {
+  width: 100%;
+}
+
+.preview {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -8px 0 -8px;
+}
+
+.preview ul li {
+  flex: 1 1 auto;
+}
+
+ul li {
+  margin: 0;
+  list-style: none;
+  padding: 8px;
+}
+
+li img {
+  max-width: 100%;
+  cursor: pointer;
+}
