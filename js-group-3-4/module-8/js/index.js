@@ -44,19 +44,24 @@ const imgGallery = document.querySelector('.js-image-gallery');
 function initGallery() {
   const fullView = initFullView(galleryItems);
   const preview = initPreview(galleryItems);
-
   imgGallery.append(fullView, preview);
 
-  preview.addEventListener('click', handleImg);
+  preview.addEventListener('click', handleImg.bind(null, galleryItems));
 }
 
-function handleImg(e) {
+function handleImg(galleryItems, e) {
   const target = e.target;
   const nodeName = target.nodeName;
   if (nodeName !== 'IMG') {
     return;
   }
-  const fullview = imgGallery.querySelector('.imgGallery');
+  const fullview = imgGallery.querySelector('.fullview');
+  const currentImg = fullview.querySelector('img');
+  console.log('currentImg ', currentImg);
+
+  const attr = target.getAttribute('src');
+  console.log('attr ', attr);
+  currentImg.setAttribute('src', attr);
 }
 
 function initFullView(galleryItems) {
