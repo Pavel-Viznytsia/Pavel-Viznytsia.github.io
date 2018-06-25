@@ -46,20 +46,32 @@ function initGallery() {
   const preview = initPreview(galleryItems);
   imgGallery.append(fullView, preview);
 
+  document.querySelector('.preview img').classList.add('active');
+
   preview.addEventListener('click', handleImg.bind(null, galleryItems));
 }
 
 function handleImg(galleryItems, e) {
+  console.log('e ', e);
   const target = e.target;
+  console.log('target ', target);
   const nodeName = target.nodeName;
+
   if (nodeName !== 'IMG') {
     return;
   }
+
   const fullview = imgGallery.querySelector('.fullview');
   const currentImg = fullview.querySelector('img');
 
   const attr = target.getAttribute('src');
   currentImg.setAttribute('src', attr);
+
+  document
+    .querySelectorAll('.preview img')
+    .forEach(item => item.classList.remove('active'));
+
+  target.classList.toggle('active');
 }
 
 function initFullView(galleryItems) {
@@ -75,10 +87,11 @@ function initPreview(galleryItems) {
   const preview = document.createElement('ul');
   preview.classList.add('preview');
   let out = [];
-  galleryItems.forEach(element => {
+  galleryItems.forEach((element, idx) => {
     const prevItem = document.createElement('li');
     const img = document.createElement('img');
     img.setAttribute('src', element.img);
+    img.setAttribute('data-fullview', element.img);
     prevItem.appendChild(img);
     out.push(prevItem);
   });
