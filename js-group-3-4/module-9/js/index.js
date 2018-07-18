@@ -8,10 +8,7 @@ const $resetBtn = document.querySelector('.js-reset');
 const $laps = document.querySelector('.js-laps');
 
 class Timer {
-  constructor({
-    onTick,
-    toggleBtn
-  }) {
+  constructor({ onTick, toggleBtn }) {
     this.startTime = null;
     this.pauseTime = null;
     this.deltaTime = 0;
@@ -45,7 +42,7 @@ class Timer {
     this.onTick({
       min: 0,
       sec: 0,
-      ms: 0
+      ms: 0,
     });
     this.isTimerActive = false;
     this.toggleBtn(this.isTimerActive);
@@ -60,9 +57,9 @@ class Timer {
     const sec = time.getSeconds();
     const ms = Number.parseInt(time.getMilliseconds() / 100);
     this.onTick({
-      min,
-      sec,
-      ms,
+      min: min,
+      sec: sec,
+      ms: ms,
     });
   }
 }
@@ -76,17 +73,7 @@ $startBtn.addEventListener('click', timer.start.bind(timer));
 // $takeLapBtn.addEventListener('click', timer.takeLap.bind(timer));
 $resetBtn.addEventListener('click', timer.reset.bind(timer));
 
-// updateClockface({
-//   min: 0,
-//   sec: 0,
-//   ms: 0
-// });
-
-function updateClockface({
-  min,
-  sec,
-  ms
-}) {
+function updateClockface({ min, sec, ms }) {
   $clockface.textContent = `${isLessTen(min)}:${isLessTen(sec)}.${ms}`;
 }
 
@@ -95,7 +82,7 @@ function isLessTen(val) {
 }
 
 function toggleBtn(isActive) {
-  console.log("isActive ", isActive);
+  console.log('isActive ', isActive);
   $startBtn.classList.toggle('active');
   $startBtn.textContent = isActive === false ? 'Start' : 'Stop';
 }
