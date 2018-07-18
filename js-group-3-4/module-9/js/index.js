@@ -14,7 +14,7 @@ class Timer {
   }) {
     this.startTime = null;
     this.pauseTime = null;
-    this.deltaTime = null;
+    this.deltaTime = 0;
     this.timerId = null;
     this.isTimerActive = false;
     this.onTick = onTick;
@@ -40,6 +40,18 @@ class Timer {
     this.toggleBtn(this.isTimerActive);
   }
 
+  reset() {
+    clearTimeout(this.timerId);
+    this.onTick({
+      min: 0,
+      sec: 0,
+      ms: 0
+    });
+    this.isTimerActive = false;
+    this.toggleBtn(this.isTimerActive);
+    this.deltaTime = 0;
+  }
+
   calcTime() {
     const currentTime = Date.now();
     this.deltaTime = currentTime - this.startTime;
@@ -61,9 +73,8 @@ const timer = new Timer({
 });
 
 $startBtn.addEventListener('click', timer.start.bind(timer));
-// $stopBtn.addEventListener('click', timer.stop.bind(timer));
 // $takeLapBtn.addEventListener('click', timer.takeLap.bind(timer));
-// $resetBtn.addEventListener('click', timer.reset.bind(timer));
+$resetBtn.addEventListener('click', timer.reset.bind(timer));
 
 // updateClockface({
 //   min: 0,
