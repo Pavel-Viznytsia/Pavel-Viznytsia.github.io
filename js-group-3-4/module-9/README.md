@@ -58,9 +58,10 @@
 
   К примеру:
 
-  new Stopwatch(parentA);
-  new Stopwatch(parentB);
-  new Stopwatch(parentC);
+  new Stopwatch1(parentA);
+  new Stopwatch2(parentB);
+  new Stopwatch3(parentC);
+  etc...
 
   Где parent* это существующий DOM-узел.
 */

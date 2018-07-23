@@ -16,13 +16,16 @@ class Timer {
     this.isTimerActive = false;
     this.onTick = onTick;
     this.toggleBtn = toggleBtn;
+    $resetBtn.disabled = true;
   }
 
   start() {
+
     if (this.isTimerActive) {
       this.stop();
     } else {
       this.isTimerActive = true;
+      this.reset();
       this.toggleBtn(this.isTimerActive);
       this.startTime = Date.now() - timer.deltaTime;
       this.timerId = setInterval(() => {
@@ -38,6 +41,11 @@ class Timer {
   }
 
   reset() {
+    if (this.isTimerActive) {
+      $resetBtn.disabled = false;
+    } else {
+      $resetBtn.disabled = true;
+    }
     clearTimeout(this.timerId);
     this.onTick({
       min: 0,
@@ -82,7 +90,6 @@ function isLessTen(val) {
 }
 
 function toggleBtn(isActive) {
-  console.log('isActive ', isActive);
   $startBtn.classList.toggle('active');
-  $startBtn.textContent = isActive === false ? 'Start' : 'Stop';
+  $startBtn.textContent = isActive === false ? 'Start' : 'Pause';
 }
