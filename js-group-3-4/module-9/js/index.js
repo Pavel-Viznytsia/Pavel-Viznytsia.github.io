@@ -1,6 +1,6 @@
 'use strict';
 
-const $stopWatch = document.querySelector('.stopwatch');
+// const $stopWatch = document.querySelector('.stopwatch');
 const $clockface = document.querySelector('.js-time');
 const $startBtn = document.querySelector('.js-start');
 const $takeLapBtn = document.querySelector('.js-take-lap');
@@ -12,32 +12,37 @@ class Timer {
     this.startTime = null;
     this.pauseTime = null;
     this.deltaTime = 0;
+    this.lapTime = null;
     this.timerId = null;
     this.isTimerActive = false;
     this.onTick = onTick;
     this.toggleBtn = toggleBtn;
     $resetBtn.disabled = true;
+    $takeLapBtn.disabled = true;
   }
 
   start() {
-
-    if (this.isTimerActive) {
-      this.stop();
-    } else {
-      this.isTimerActive = true;
-      this.reset();
-      this.toggleBtn(this.isTimerActive);
-      this.startTime = Date.now() - timer.deltaTime;
+    $resetBtn.disabled = false;
+    $takeLapBtn.disabled = false;
+    if (!this.isTimerActive) {
+      this.startTime = Date.now() - this.deltaTime;
       this.timerId = setInterval(() => {
         this.calcTime();
       }, 100);
+    } else {
+      this.stop();
     }
+    this.isTimerActive = !this.isTimerActive;
+    this.toggleBtn(this.isTimerActive);
   }
 
   stop() {
     clearTimeout(this.timerId);
-    this.isTimerActive = false;
-    this.toggleBtn(this.isTimerActive);
+  }
+
+  takeLap() {
+    let $clockfaceNow = $clockface.innerText;
+    $laps.innerHTML += `<li class="lap">${$clockfaceNow}</li>`;
   }
 
   reset() {
@@ -53,8 +58,10 @@ class Timer {
       ms: 0,
     });
     this.isTimerActive = false;
-    this.toggleBtn(this.isTimerActive);
     this.deltaTime = 0;
+    $resetBtn.disabled = true;
+    $takeLapBtn.disabled = true;
+    this.toggleBtn(null);
   }
 
   calcTime() {
@@ -78,7 +85,7 @@ const timer = new Timer({
 });
 
 $startBtn.addEventListener('click', timer.start.bind(timer));
-// $takeLapBtn.addEventListener('click', timer.takeLap.bind(timer));
+$takeLapBtn.addEventListener('click', timer.takeLap.bind(timer));
 $resetBtn.addEventListener('click', timer.reset.bind(timer));
 
 function updateClockface({ min, sec, ms }) {
@@ -91,5 +98,13 @@ function isLessTen(val) {
 
 function toggleBtn(isActive) {
   $startBtn.classList.toggle('active');
-  $startBtn.textContent = isActive === false ? 'Start' : 'Pause';
+  const isBtnActive = $startBtn.classList.contains('active');
+  if (isBtnActive && isActive === true) {
+    $startBtn.textContent = 'Pause';
+  } else if (!isBtnActive && isActive === false) {
+    $startBtn.textContent = 'Continue';
+  } else {
+    $startBtn.textContent = 'Start';
+    $startBtn.classList.remove('active');
+  }
 }
