@@ -62,6 +62,7 @@ class Timer {
     $resetBtn.disabled = true;
     $takeLapBtn.disabled = true;
     this.toggleBtn(null);
+    $laps.innerHTML = null;
   }
 
   calcTime() {
