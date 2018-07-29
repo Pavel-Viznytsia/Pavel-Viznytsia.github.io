@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 250px;
+}
+
+.getAllBtn,
+.addBtn,
+.delBtn,
+.updateBtn {
+  margin: 16px 0;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 700;
+}
+
+.getAllBtn:hover,
+.addBtn:hover,
+.delBtn:hover,
+.updateBtn:hover {
+  opacity: 0.95;
+  box-shadow: 0 0 12px #666;
+}
+
+.getAllBtn {
+  background: #2a2cc0;
+}
+
+.addBtn {
+  background: #1d9c19;
+}
+
+.delBtn {
+  background: #ce2222;
+}
+
+.updateBtn {
+  background: #d1d419;
+}
+
+.input {
+  padding: 8px 16px;
+}
