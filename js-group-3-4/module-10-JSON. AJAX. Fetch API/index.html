@@ -21,13 +21,15 @@
     <li>Работа с Web API</li>
     <li>Кросс-доменные запросы</li>
   </ol>
-  <div class="container">
-    <button class="btn getAllBtn">Get all users from db...</button>
-    <input class="input" type="text" placeholder="Enter user id">
-    <button class="btn addBtn">Add user to db...</button>
-    <button class="btn delBtn">Remove user from db...</button>
-    <button class="btn updateBtn">Update user in db...</button>
-  </div>
+  <form class="container">
+    <button class="btn getAllBtn">Get ALL users from db...</button>
+    <input autofocus="autofocus" class="input" type="text" placeholder="Enter user ID">
+    <input class="input" type="text" placeholder="Enter user NAME">
+    <input class="input" type="text" placeholder="Enter user AGE">
+    <button class="btn addBtn">Add user to db by :name and :age...</button>
+    <button class="btn delBtn">Remove user from db by :id...</button>
+    <button class="btn updateBtn">Update user in db by :id...</button>
+  </form>
   <script src="js/index.js"></script>
 </body>
 

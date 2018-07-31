@@ -9,7 +9,7 @@
 .addBtn,
 .delBtn,
 .updateBtn {
-  margin: 16px 0;
+  margin-bottom: 16px;
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
@@ -43,5 +43,6 @@
 }
 
 .input {
+  margin-bottom: 16px;
   padding: 8px 16px;
 }
