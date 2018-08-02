@@ -1,11 +1,28 @@
 .container {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #6666;
+  padding: 16px;
+}
+
+.form-container {
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  max-width: 250px;
+  padding: 8px;
+  background-color: #fff;
+}
+
+.outData-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  flex-basis: auto;
+  background-color: #fff;
 }
 
 .getAllBtn,
+.getByIdBtn,
 .addBtn,
 .delBtn,
 .updateBtn {
@@ -28,6 +45,10 @@
 
 .getAllBtn {
   background: #2a2cc0;
+}
+
+.getByIdBtn {
+  background: #6666;
 }
 
 .addBtn {
