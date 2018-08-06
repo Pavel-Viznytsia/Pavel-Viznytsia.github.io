@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   background-color: #6666;
   padding: 16px;
 }
@@ -10,15 +10,23 @@
   display: flex;
   flex-direction: column;
   padding: 8px;
+  margin-right: 16px;
   background-color: #fff;
 }
 
 .outData-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100px;
-  flex-basis: auto;
+  flex: 1 1 auto;
   background-color: #fff;
+}
+
+table, tr, th, td {
+  border: 1px solid #666;
+  border-collapse: collapse;
+  min-width: auto;
+}
+
+th, td {
+  padding: 4px 8px;
 }
 
 .getAllBtn,
