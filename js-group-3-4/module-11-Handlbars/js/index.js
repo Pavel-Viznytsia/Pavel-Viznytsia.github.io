@@ -81,5 +81,22 @@ const laptops = [ {
   },
 ];
 
-console.log("const ", laptops);
+const filter = {
+  size: [],
+  color: [],
+  release_date: []
+}
 
+const goodsContainer = document.querySelector('.goods-container');
+
+const source = document.querySelector('.goods-card').innerHTML.trim();
+
+const template = Handlebars.compile(source);
+
+const result = template({laptops});
+
+goodsContainer.insertAdjacentHTML('afterbegin', result);
+
+
+
+ console.log("result ", result);

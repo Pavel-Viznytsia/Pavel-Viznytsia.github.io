@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+}
+
+.form {
+  flex: 0 0 auto;
+}
+
+.goods-card-container img {
+  width: 250px;
+}
