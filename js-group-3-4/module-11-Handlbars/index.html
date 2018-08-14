@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <h1>Module-11. Handlebars</h1>
+  <!-- <h1>Module-11. Handlebars</h1> -->
   <div class="container">
     <form class="form js-form">
       <section>
@@ -72,7 +72,7 @@
   </div>
 
   <template class="goods-card">
-    {{#each laptop}}
+    {{#each laptops}}
       <div class="goods-card-container">
         <img src="{{img}}" alt="{{name}}">
         <h3 class="name">Name: {{name}}</h3>
@@ -82,7 +82,7 @@
         <p class="release-date">Release date: {{release_date}}</p>
         <p class="price">Price: ${{price}}</p>
       </div>
-    {{/each}}
+      {{/each}}
   </template>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>

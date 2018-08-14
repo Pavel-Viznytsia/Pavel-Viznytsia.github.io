@@ -1,8 +1,8 @@
 const getAllBtn = document.querySelector( '.getAllBtn' );
-const inputId = document.querySelector( '.inputId' );
+let inputId = document.querySelector( '.inputId' );
 const getByIdBtn = document.querySelector( '.getByIdBtn' );
-const inputGetByName = document.querySelector( '.getByName' );
-const inputGetByAge = document.querySelector( '.getByAge' );
+let inputGetByName = document.querySelector( '.getByName' );
+let inputGetByAge = document.querySelector( '.getByAge' );
 const addBtn = document.querySelector( '.addBtn' );
 const delBtn = document.querySelector( '.delBtn' );
 const updateBtn = document.querySelector( '.updateBtn' );
@@ -36,6 +36,9 @@ function getAllUsers ( evt ) {
         rowData += outData;
       } );
       result.innerHTML = rowData;
+      inputId = '';
+      inputGetByName = '';
+      inputGetByAge = '';
     } )
     .catch( err => console.error( err ) );
 }
@@ -59,6 +62,7 @@ function getUserById ( evt ) {
         </tr>`;
       rowData = outData;
       result.innerHTML = rowData;
+      inputId = '';
     } )
     .catch( err => console.error( err ) );
 }
@@ -92,6 +96,8 @@ function addUser ( evt ) {
         </tr>`;
       rowData = outData;
       result.innerHTML = rowData;
+      inputGetByName = '';
+      inputGetByAge = '';
     } )
     .catch( err => console.error( err ) );
 }
@@ -117,6 +123,7 @@ function deleteUser ( evt ) {
         </tr>`;
       rowData = outData;
       result.innerHTML = rowData;
+      inputId = '';
     } )
     .catch( err => console.error( err ) );
 }
@@ -150,6 +157,9 @@ function updateUser ( evt ) {
         </tr>`;
       rowData = outData;
       result.innerHTML = rowData;
+      inputId = '';
+      inputGetByName = '';
+      inputGetByAge = '';
     } )
     .catch( err => console.error( err ) );
 }
