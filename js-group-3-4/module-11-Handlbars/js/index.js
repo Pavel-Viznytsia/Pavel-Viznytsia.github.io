@@ -91,12 +91,6 @@ const laptops = [
   },
 ];
 
-const filter = {
-  size: [],
-  color: [],
-  release_date: [],
-};
-
 // const goodsCard = document.querySelectorAll( '.goods-card-container' );
 const checkBoxes = document.querySelectorAll( 'input[type="checkbox"]' );
 const filterForm = document.querySelector( '.js-form' );
@@ -119,12 +113,18 @@ goodsContainer.insertAdjacentHTML( 'afterbegin', result );
     //   });
     // }
 
-function handlGoodsFilter ( event ) {
-  event.preventDefault();
-  getFilter( checkBoxes );
+    function handlGoodsFilter ( event ) {
+      event.preventDefault();
+      getFilter( checkBoxes );
+      console.log(getFilter( checkBoxes ));
 }
 
 function getFilter ( checkBoxes ) {
+  const filter = {
+    size: [],
+    color: [],
+    release_date: [],
+  };
   checkBoxes.forEach( elem => {
     if ( elem.checked && elem.name === 'size' ) {
       filter.size.push( elem );
@@ -134,6 +134,7 @@ function getFilter ( checkBoxes ) {
       filter.release_date.push( elem );
     }
   } );
+  return filter;
 }
 
 function handlResetFilter () {
