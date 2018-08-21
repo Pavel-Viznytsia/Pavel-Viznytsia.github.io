@@ -47,7 +47,7 @@ const laptops = [
     name: 'Macbook Pro Gray 15"',
     img: 'http://demo.posthemes.com/pos_zadademo/images/placeholder.png',
     descr:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, beatae.',
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, beatae.',
   },
   {
     size: 15,
@@ -57,7 +57,7 @@ const laptops = [
     name: 'Macbook Pro Black 15"',
     img: 'http://demo.posthemes.com/pos_zadademo/images/placeholder.png',
     descr:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, beatae.',
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, beatae.',
   },
   {
     size: 17,
@@ -67,7 +67,7 @@ const laptops = [
     name: 'Macbook Air White 17"',
     img: 'http://demo.posthemes.com/pos_zadademo/images/placeholder.png',
     descr:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, beatae.',
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, beatae.',
   },
   {
     size: 17,
@@ -77,7 +77,7 @@ const laptops = [
     name: 'Macbook Pro Gray 17"',
     img: 'http://demo.posthemes.com/pos_zadademo/images/placeholder.png',
     descr:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, beatae.',
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, beatae.',
   },
   {
     size: 17,
@@ -91,47 +91,57 @@ const laptops = [
   },
 ];
 
-// const goodsCard = document.querySelectorAll( '.goods-card-container' );
+const filter = {
+  size: [],
+  color: [],
+  release_date: [],
+};
+
+document.addEventListener( 'DOMContentLoaded', initPage );
+
 const checkBoxes = document.querySelectorAll( 'input[type="checkbox"]' );
 const filterForm = document.querySelector( '.js-form' );
 const filtrBtn = document.querySelector( 'button[type="submit"]' );
 const resetBtn = document.querySelector( 'button[type="reset"]' );
+const goodsContainer = document.querySelector( '.goods-container' );
 
 filtrBtn.addEventListener( 'click', handlGoodsFilter );
 resetBtn.addEventListener( 'click', handlResetFilter );
 
-// Handlebars
-const goodsContainer = document.querySelector( '.goods-container' );
-const source = document.querySelector( '.goods-card' ).innerHTML.trim();
-const template = Handlebars.compile( source );
-const result = template( { laptops } );
-goodsContainer.insertAdjacentHTML( 'afterbegin', result );
 
-// function getFilter(filterSettings) {
-  //   const filter = filterSettings.forEach(element => {
+function initPage() {
+  const source = document.querySelector( '.goods-card' ).innerHTML.trim();
+  const template = Handlebars.compile( source );
+  const result = template( { laptops } );
 
-    //   });
-    // }
+  goodsContainer.insertAdjacentHTML( 'afterbegin', result );
+}
 
-    function handlGoodsFilter ( event ) {
-      event.preventDefault();
-      getFilter( checkBoxes );
-      console.log(getFilter( checkBoxes ));
+function handlGoodsFilter ( event ) {
+  event.preventDefault();
+  goodsContainer.innerHTML = '';
+
+  const filteredGoods = laptops.filter(item => {
+
+  });
+
+  // size: 13,
+  // color: 'white',
+  // release_date: 2015,
+
+  const filter = getFilter( checkBoxes );
+  console.log( filter );
+  console.log( goodsContainer );
 }
 
 function getFilter ( checkBoxes ) {
-  const filter = {
-    size: [],
-    color: [],
-    release_date: [],
-  };
   checkBoxes.forEach( elem => {
     if ( elem.checked && elem.name === 'size' ) {
-      filter.size.push( elem );
+      filter.size.push( elem.value );
     } else if ( elem.checked && elem.name === 'color' ) {
-      filter.color.push( elem );
+      filter.color.push( elem.value );
     } else if ( elem.checked && elem.name === 'release_date' ) {
-      filter.release_date.push( elem );
+      filter.release_date.push( elem.value );
     }
   } );
   return filter;
@@ -143,3 +153,21 @@ function handlResetFilter () {
   filter.color = [];
   filter.release_date = [];
 }
+
+
+// const person = {
+//   age: 10,
+//   setAge ( newAge ) {
+//     this.age = newAge;
+//   },
+//   refreshAge ( userId ) {
+//     fetchAgeFromDb( function ( newAge ) {
+//       person.setAge( newAge );
+//     } );
+//   },
+// };
+// function fetchAgeFromDb ( cb ) {
+//   cb( 20 );
+// }
+// person.refreshAge();
+// console.log( person.age );
